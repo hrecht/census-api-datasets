@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - uses: actions/checkout@v4
+    
       # Use cURL to fetch the given URL, saving the response to `data.json`
       - name: Fetch data
         run: curl "https://api.census.gov/data.json" -o data/data.json
@@ -23,7 +25,6 @@ jobs:
       #    key: ${{ hashFiles('data/data.json') }}
 
       # Commit changes
-      - uses: actions/checkout@v4
         # if: steps.cache.outputs.cache-hit != 'true'
       - name: If data has changed, commit
         run: |
