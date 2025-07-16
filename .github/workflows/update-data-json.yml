@@ -12,11 +12,7 @@ jobs:
 
       - uses: actions/checkout@v4
     
-      # Use cURL to fetch the given URL, saving the response to `data.json`
-      #- name: Fetch data
-      #  run: curl "https://api.census.gov/data.json" -o data/data.json
-          
-      - uses: actions/checkout@v4
+      # Install R and dependencies
       - uses: r-lib/actions/setup-r@v2
         with:
           r-version: 'release' # The R version to download (if necessary) and use.
@@ -24,28 +20,29 @@ jobs:
         with:
           packages: |
             censusapi
-      - run: Rscript scripts/update-metadata.R
+
+      # Run R script to grab metadata and compare against saved .csv
+      - name: Run update-metadata.R
+        run: Rscript scripts/update-metadata.R
 
       # Compare the response to the previous run, using a hash of the response as the cache key
-      - name: Fetch cached endpoints.csv
+      - name: Compare cached endpoints.csv
         id: cache
         uses: actions/cache@v4
         with:
           path: data/endpoints.csv
           key: ${{ hashFiles('data/endpoints.csv') }}
 
-      - name: Testing cache
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          echo "something changed"
-
-      - name: Testing cache 2
+      - name: If the cached CSV and new are identical, do nothing
         if: steps.cache.outputs.cache-hit == 'true'
         run: |
-          echo "something did not change"
+          echo "endpoints.csv did not change"
 
-      - name: If data has changed, commit
+      - name: If the cached CSV has changed, commit update
+        if: steps.cache.outputs.cache-hit != 'true'
         run: |
+          echo "endpoints.csv changed"
+
           # Update timestamp in update-time.txt
           echo "$(TZ=:America/New_York date)" > update-time.txt
 
