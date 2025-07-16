@@ -12,7 +12,15 @@ endpoints <- endpoints[order(endpoints$vintage, endpoints$name, decreasing = T),
 row.names(endpoints) <- NULL
 
 # Is there any difference?
+is_identical <- identical(endpoints_old, endpoints)
 print("Are the old and new endpoints metadata identical?")
-print(identical(endpoints_old, endpoints))
+print(is_identical)
 
-write.csv(endpoints, "data/endpoints.csv", row.names = F, na = "")
+if (is_identical) {
+	print("Nothing to change")
+} else {
+	print("Updating 'data/endpoints.csv'")
+	write.csv(endpoints, "data/endpoints.csv", row.names = F, na = "")
+}
+
+

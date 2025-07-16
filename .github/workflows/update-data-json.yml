@@ -16,14 +16,6 @@ jobs:
       #- name: Fetch data
       #  run: curl "https://api.census.gov/data.json" -o data/data.json
           
-      # Compare the response to the previous run, using a hash of the response as the cache key
-      #- name: Fetch Cache
-      #  id: cache
-      #  uses: actions/cache@v4
-      #  with:
-      #    path: data/data.json
-      #    key: ${{ hashFiles('data/data.json') }}
-
       - uses: actions/checkout@v4
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -34,7 +26,24 @@ jobs:
             censusapi
       - run: Rscript scripts/update-metadata.R
 
-        # if: steps.cache.outputs.cache-hit != 'true'
+      # Compare the response to the previous run, using a hash of the response as the cache key
+      - name: Fetch cached endpoints.csv
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: data/endpoints.csv
+          key: ${{ hashFiles('data/endpoints.csv') }}
+
+      - name: Testing cache
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          echo "something changed"
+
+      - name: Testing cache 2
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: |
+          echo "something did not change"
+
       - name: If data has changed, commit
         run: |
           # Update timestamp in update-time.txt
