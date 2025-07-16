@@ -1,5 +1,4 @@
 library(censusapi)
-library(dplyr)
 
 # Read in old metadata
 endpoints_old <- read.csv("data/endpoints.csv")
@@ -8,8 +7,9 @@ endpoints_old[endpoints_old == ""] <- NA
 # Get metadata
 endpoints <- listCensusApis()
 
-# Sort 
-endpoints <- endpoints %>% arrange(desc(vintage), name)
+# Sort (using base R to avoid extra dependencies)
+endpoints <- endpoints[order(endpoints$vintage, endpoints$name, decreasing = T),]
+row.names(endpoints) <- NULL
 
 # Is there any difference?
 print("Are the old and new endpoints metadata identical?")

@@ -33,7 +33,7 @@ jobs:
           packages: |
             censusapi
             dplyr
-      - run: Rscript -e 'print("hello")'
+      - run: Rscript scripts/update-metadata.R
 
         # if: steps.cache.outputs.cache-hit != 'true'
       - name: If data has changed, commit
