@@ -32,7 +32,6 @@ jobs:
         with:
           packages: |
             censusapi
-            dplyr
       - run: Rscript scripts/update-metadata.R
 
         # if: steps.cache.outputs.cache-hit != 'true'
