@@ -19,8 +19,13 @@ print(is_identical)
 if (is_identical) {
 	print("Nothing to change")
 } else {
-	print("Updating 'data/endpoints.csv'")
+	# Update the minimal csv
+	print("Updating data/endpoints.csv'")
 	write.csv(endpoints, "data/endpoints.csv", row.names = F, na = "")
+	
+	# Download full metadata
+	print("Updating full data.json")
+	download.file("https://api.census.gov/data.json", destfile = "data/data.json")
 }
 
 
