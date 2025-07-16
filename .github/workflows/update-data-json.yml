@@ -11,8 +11,8 @@ jobs:
     steps:
 
       # Use cURL to fetch the given URL, saving the response to `data.json`
-      - name: Fetch data
-        run: curl "https://api.census.gov/data.json" -o data/data.json
+      #- name: Fetch data
+      #  run: curl "https://api.census.gov/data.json" -o data/data.json
           
       # Compare the response to the previous run, using a hash of the response as the cache key
       #- name: Fetch Cache
@@ -24,6 +24,11 @@ jobs:
 
       # Commit changes
       - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release' # The R version to download (if necessary) and use.
+      - run: Rscript -e 'print("hello")'
+
         # if: steps.cache.outputs.cache-hit != 'true'
       - name: If data has changed, commit
         run: |
