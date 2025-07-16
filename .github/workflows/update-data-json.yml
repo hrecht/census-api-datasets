@@ -1,7 +1,8 @@
 on:
+  workflow_dispatch:
   schedule:
     # Run every hour, on the hour.
-    - cron:  '*/10 * * * *'
+    - cron:  '0 * * * *'
 
 name: Check for metadata json changes
 
