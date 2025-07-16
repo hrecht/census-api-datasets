@@ -43,6 +43,9 @@ jobs:
         run: |
           echo "endpoints.csv changed"
 
+      - name: If the cached CSV has changed, commit update
+        run: |
+          echo "endpoints.csv really changed"
           # Update timestamp in update-time.txt
           echo "$(TZ=:America/New_York date)" > update-time.txt
 
