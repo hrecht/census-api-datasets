@@ -22,8 +22,9 @@ if (is_identical) {
 	# Update the minimal csv
 	print("Updating data/endpoints.csv'")
 	
-	# TEST FAKERY
-	endpoints[1,1] <- "test"
+	# TEST FAKERY if needed for forcing a data update action when the actual data has not changed
+	# endpoints[1,1] <- "test"
+	
 	write.csv(endpoints, "data/endpoints.csv", row.names = F, na = "")
 	
 	# Download full metadata
