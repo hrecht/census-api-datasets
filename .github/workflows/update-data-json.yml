@@ -26,24 +26,33 @@ jobs:
         run: Rscript scripts/update-metadata.R
 
       # Compare the response to the previous run, using a hash of the response as the cache key
-      - name: Compare cached endpoints.csv
-        id: cache
-        uses: actions/cache@v4
-        with:
-          path: data/endpoints.csv
-          key: ${{ hashFiles('data/endpoints.csv') }}
+      # - name: Compare cached endpoints.csv
+      #   id: cache
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: data/endpoints.csv
+      #     key: ${{ hashFiles('data/endpoints.csv') }}
 
-      - name: If the cached CSV and new are identical, do nothing
-        if: steps.cache.outputs.cache-hit == 'true'
+      # - name: If the cached CSV and new are identical, do nothing
+      #   if: steps.cache.outputs.cache-hit == 'true'
+      #   run: |
+      #     echo "endpoints.csv did not change"
+
+      # - name: If the cached CSV has changed, commit update
+      #   if: steps.cache.outputs.cache-hit != 'true'
+      #   run: |
+      #     echo "endpoints.csv changed"
+
+      - name: If the cached CSV has not changed, do nothing
+        if: "$UPDATED_DATA" == false
         run: |
-          echo "endpoints.csv did not change"
+          echo "endpoints.csv changed: $UPDATED_DATA
+
+          # GITHUB_ENV var set in R script
+          printf '%s\n' "$UPDATED_DATA"
 
       - name: If the cached CSV has changed, commit update
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          echo "endpoints.csv changed"
-
-      - name: If the cached CSV has changed, commit update
+        if: "$UPDATED_DATA" == true
         run: |
           echo "endpoints.csv really changed"
 
