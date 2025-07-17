@@ -27,7 +27,7 @@ jobs:
 
       # Commit or not based on env variable passed from R
       - name: If the cached CSV has not changed, do nothing
-        #if: "$UPDATED_DATA" == false
+        if: env.UPDATED_DATA == false
         run: |
           echo "endpoints.csv changed:" $UPDATED_DATA
 
@@ -35,7 +35,7 @@ jobs:
           printf '%s\n' "$UPDATED_DATA"
 
       - name: If the cached CSV has changed, commit update
-        if: "$UPDATED_DATA" == true
+        if: env.UPDATED_DATA != false
         run: |
           echo "endpoints.csv changed:" $UPDATED_DATA
 
