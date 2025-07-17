@@ -46,8 +46,9 @@ jobs:
       - name: If the cached CSV has changed, commit update
         run: |
           echo "endpoints.csv really changed"
-          # Update timestamp in update-time.txt
-          echo "$(TZ=:America/New_York date)" > update-time.txt
+
+          # GITHUB_ENV var set in R script
+          printf '%s\n' "$UPDATED_DATA"
 
           # Configure git user
           git config user.name "hrecht[bot]"

@@ -18,7 +18,10 @@ print(is_identical)
 
 if (is_identical) {
 	print("Nothing to change")
+	
+	system('echo "UPDATED_DATA=false" >> "$GITHUB_ENV"')
 } else {
+	
 	# Update the minimal csv
 	print("Updating data/endpoints.csv'")
 	
@@ -30,6 +33,11 @@ if (is_identical) {
 	# Download full metadata
 	print("Updating full data.json")
 	download.file("https://api.census.gov/data.json", destfile = "data/data.json")
+	
+	# Update timestamp in update-time.txt
+	system('echo "$(TZ=:America/New_York date)" > update-time.txt')
+	
+	system('echo "UPDATED_DATA=true" >> "$GITHUB_ENV"')
 }
 
 
