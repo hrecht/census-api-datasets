@@ -30,11 +30,11 @@ jobs:
         run: echo "endpoints.csv changed:" $UPDATED_DATA
 
       - name: If the cached CSV has not changed, finish
-        if: env.UPDATED_DATA == false
+        if: env.UPDATED_DATA == 'false'
         run: echo "no changes, nothing committed"
 
       - name: If the cached CSV has changed, commit update
-        if: env.UPDATED_DATA == true
+        if: env.UPDATED_DATA == 'true'
         run: |
           # Configure git user
           git config user.name "hrecht[bot]"
