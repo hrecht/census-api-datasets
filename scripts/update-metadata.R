@@ -19,7 +19,7 @@ print(is_identical)
 if (is_identical) {
 	print("Nothing to change")
 	
-	system('echo "UPDATED_DATA=false" >> "$GITHUB_ENV"')
+	system('echo "UPDATED_DATA=3" >> "$GITHUB_ENV"')
 } else {
 	
 	# Update the minimal csv

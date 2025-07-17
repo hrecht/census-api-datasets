@@ -26,22 +26,12 @@ jobs:
         run: Rscript scripts/update-metadata.R
 
       # Commit or not based on env variable passed from R
-      - name: If the cached CSV has not changed, do nothing
-        if: env.UPDATED_DATA == false
-        run: |
-          echo "endpoints.csv changed:" $UPDATED_DATA
-
-          # GITHUB_ENV var set in R script
-          printf '%s\n' "$UPDATED_DATA"
+      - run: echo "endpoints.csv changed:" $UPDATED_DATA
+      - run: echo "endpoints.csv changed:" env.UPDATED_DATA
 
       - name: If the cached CSV has changed, commit update
-        if: env.UPDATED_DATA != false
+        if: env.UPDATED_DATA == true
         run: |
-          echo "endpoints.csv changed:" $UPDATED_DATA
-
-          # GITHUB_ENV var set in R script
-          printf '%s\n' "$UPDATED_DATA"
-
           # Configure git user
           git config user.name "hrecht[bot]"
           git config user.email "9753760+hrecht[bot]@users.noreply.github.com"
