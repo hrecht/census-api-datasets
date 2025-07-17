@@ -39,11 +39,11 @@ jobs:
           git config user.name "hrecht[bot]"
           git config user.email "9753760+hrecht[bot]@users.noreply.github.com"
 
-          # Commit files
-          git add .
-
           # Save diff
           git diff data/endpoints.csv > data/endpoints-diff.txt
+
+          # Commit files
+          git add .
 
           timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M:%S')
           git commit -m "Update data ${timestamp}" || exit 0
