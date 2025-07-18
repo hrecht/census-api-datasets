@@ -32,7 +32,7 @@ jobs:
         if: env.UPDATED_DATA == 'false'
         run: echo "no changes, nothing committed"
 
-      - name: If the cached CSV has changed, commit update
+      - name: Set up commit
         if: env.UPDATED_DATA == 'true'
         run: |
           # Configure git user
@@ -45,6 +45,16 @@ jobs:
           # Commit files
           git add .
 
-          timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M:%S')
-          git commit -m "Update data ${timestamp}" || exit 0
+          timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M')
+
+      - name: Push minor changes update
+        if: env.UPDATED_DATA == 'true' & env.MAJOR_CHANGES == 'false'
+        run: |
+          git commit -m "Minor data change ${timestamp}" || exit 0
+          git push
+
+      - name: Push major changes update
+        if: env.UPDATED_DATA == 'true' & env.MAJOR_CHANGES == 'true'
+        run: |
+          git commit -m "Major data change ${timestamp}" || exit 0
           git push
