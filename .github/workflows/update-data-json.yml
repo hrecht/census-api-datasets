@@ -39,9 +39,6 @@ jobs:
           git config user.name "hrecht[bot]"
           git config user.email "9753760+hrecht[bot]@users.noreply.github.com"
 
-          # Save diff
-          git diff data/endpoints.csv > data/endpoints-diff.txt
-
           # Commit files
           git add .
 
