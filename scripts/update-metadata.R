@@ -114,5 +114,3 @@ if (is_identical) {
 	# Save out the update status to Github actions env
 	system('echo "UPDATED_DATA=true" >> "$GITHUB_ENV"')
 }
-
-
