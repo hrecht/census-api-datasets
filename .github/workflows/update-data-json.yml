@@ -54,7 +54,7 @@ jobs:
           git push
 
       - name: Push major changes update
-        if: env.UPDATED_DATA == 'true' & env.MAJOR_CHANGES == 'true'
+        if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'true'
         run: |
           git commit -m "Major data change ${timestamp}" || exit 0
           git push
