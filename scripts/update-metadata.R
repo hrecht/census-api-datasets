@@ -92,7 +92,7 @@ if (is_identical) {
 		# Append existing file of endpoint additions/deletions
 		write.table(rows_noted, file = "data/endpoint-changes.csv",
 								sep = ",", append = T, quote = T,
-								col.names = T, row.names = F)
+								col.names = F, row.names = F)
 		
 		# Save status out to env
 		system('echo "MAJOR_CHANGES=true" >> "$GITHUB_ENV"')
