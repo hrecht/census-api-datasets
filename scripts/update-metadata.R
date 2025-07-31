@@ -82,7 +82,14 @@ if (is_identical) {
 		}
 		
 		# Construct a df with changes
-		rows_noted <- rbind(rows_added, rows_removed)
+		if (length(urls_added) > 0 & length(urls_removed) == 0) {
+			rows_noted <- rows_added
+		}	else if (length(urls_added) == 0 & length(urls_removed) > 0) {
+			rows_noted <- rows_removed
+		}  else {
+			rows_noted <- rbind(rows_added, rows_removed)
+		}
+		
 		rows_noted$change_date <- string_time
 		rows_noted <- rows_noted[ , c("change",
 														names(rows_noted)[names(rows_noted) != "change"])]
