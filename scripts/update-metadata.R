@@ -7,7 +7,7 @@
 library(censusapi)
 
 # Read in old metadata
-endpoints_old <- read.csv("data/endpoints.csv")
+endpoints_old <- read.csv("src/routes/_data/endpoints.csv")
 endpoints_old[endpoints_old == ""] <- NA 
 
 # Get metadata
@@ -20,7 +20,7 @@ row.names(endpoints_new) <- NULL
 ################################################################
 # Tests for these functions when the data has not ACTUALLY changed
 ################################################################
-test_changes <- F
+test_changes <- T
 
 if (test_changes == T) {
 	# Change a less-important metadata field
@@ -109,7 +109,7 @@ if (is_identical) {
 	
 	# Update the minimal csv
 	print("Updating data/endpoints.csv'")
-	write.csv(endpoints_new, "data/endpoints.csv", row.names = F, na = "")
+	write.csv(endpoints_new, "src/routes/_data/endpoints.csv", row.names = F, na = "")
 	
 	# Download full metadata
 	print("Updating full data/data.json")
