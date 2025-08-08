@@ -41,18 +41,15 @@ jobs:
 
           # Commit files
           git add .
-      - env: 
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        name: Push minor changes update
+
+      - name: Push minor changes update
         if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'false'
         run: |
           timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M')
           git commit -m "Minor data change $TEST ${timestamp}" || exit 0
           git push
 
-      - env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        name: Push major changes update
+      - name: Push major changes update
         if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'true'
         run: |
           timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M')
@@ -61,3 +58,5 @@ jobs:
 
   deploy-site:
     uses: ./.github/workflows/deploy-site.yml
+    secrets:
+      token: ${{ secrets.GH_TOKEN }}
