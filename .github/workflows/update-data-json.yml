@@ -47,7 +47,7 @@ jobs:
         if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'false'
         run: |
           timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M')
-          git commit -m "Minor data change ${timestamp}" || exit 0
+          git commit -m "Minor data change $TEST ${timestamp}" || exit 0
           git push
 
       - env:
@@ -56,5 +56,5 @@ jobs:
         if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'true'
         run: |
           timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M')
-          git commit -m "Major data change ${timestamp}" || exit 0
+          git commit -m "Major data change $TEST ${timestamp}" || exit 0
           git push

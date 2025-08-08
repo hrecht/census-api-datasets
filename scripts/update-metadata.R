@@ -23,6 +23,7 @@ row.names(endpoints_new) <- NULL
 test_changes <- T
 
 if (test_changes == T) {
+	system('echo "TEST=TEST" >> "$GITHUB_ENV"')
 	# Change a less-important metadata field
 	endpoints_new[1,1] <- "test"
 	
@@ -37,6 +38,8 @@ if (test_changes == T) {
 	# Fake remove row
 	endpoints_new <- endpoints_new[-27,]
 	endpoints_new <- endpoints_new[-300,]
+} else {
+	system('echo "TEST= " >> "$GITHUB_ENV"')	
 }
 
 # Is there any difference?
@@ -97,7 +100,7 @@ if (is_identical) {
 																	names(rows_noted)[names(rows_noted) != "change_date"])]
 		
 		# Append existing file of endpoint additions/deletions
-		write.table(rows_noted, file = "data/endpoint-changes.csv",
+		write.table(rows_noted, file = "src/routes/_data/endpoint-changes.csv",
 								sep = ",", append = T, quote = T,
 								col.names = F, row.names = F)
 		
@@ -116,7 +119,7 @@ if (is_identical) {
 	download.file("https://api.census.gov/data.json", destfile = "data/data.json")
 	
 	# Update timestamp in update-time.txt
-	writeLines(string_time, "update-time.txt")
+	writeLines(string_time, "data/update-time.txt")
 	
 	# Save out the update status to Github actions env
 	system('echo "UPDATED_DATA=true" >> "$GITHUB_ENV"')
