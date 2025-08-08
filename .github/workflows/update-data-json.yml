@@ -7,7 +7,7 @@ on:
 name: Check for metadata changes
 
 jobs:
-  check:
+  check_data:
     runs-on: ubuntu-latest
     steps:
 
@@ -22,12 +22,16 @@ jobs:
 
       # Run R script to grab metadata and compare against saved .csv
       - name: Run update-metadata.R
-        run: Rscript scripts/update-metadata.R
+        run: |
+          Rscript scripts/update-metadata.R
+          run: echo "endpoints.csv changed:" $UPDATED_DATA
 
-      # Commit or not based on env variable passed from R
-      - name: Print $UPDATED_DATA
-        run: echo "endpoints.csv changed:" $UPDATED_DATA
+  commit:
+    needs: check_data
+    runs-on: ubuntu-latest
+    steps:
 
+        # Commit or not based on env variable passed from R
       - name: If the cached CSV has not changed, finish
         if: env.UPDATED_DATA == 'false'
         run: echo "no changes, nothing committed"
@@ -55,4 +59,15 @@ jobs:
           timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M')
           git commit -m "Major data change $TEST ${timestamp}" || exit 0
           git push
+
+  build_site:
+    needs: commit
+    runs-on: ubuntu-latest
+    steps:
+      - name: build site
+        if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'true'
+        uses: .github/workflows/deploy-site.yml
+        #secrets:
+        #  token: ${{ secrets.GH_TOKEN }}
+        #secrets: inherit
 
