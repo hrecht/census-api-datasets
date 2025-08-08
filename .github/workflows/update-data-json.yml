@@ -63,7 +63,5 @@ jobs:
   build_site:
     needs: commit
     uses: ./.github/workflows/deploy-site.yml
-    secrets:
-      token: ${{ secrets.GH_TOKEN }}
-        #secrets: inherit
+    secrets: inherit
 
