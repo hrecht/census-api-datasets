@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+	/* fonts */
+	--font-body: 'Mulish', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+	--font-serif: Iowan Old Style, Times New Roman, Times, serif;
+	--font-mono: Menlo, Consolas, Monaco, monospace;
+
+	/* typography */
+	--text-body: 14px;
+	--text-p: 16px;
+	--text-large: 20px;
+	--text-medium: 16px;
+	--text-small: 14px;
+	--text-xsmall: 13px;
+	--text-xxsmall: 11px;
+
+	/* colors */
+	--color-highlight: #0d565c;
+	--color-light: #329da7;
+	--color-darkgreen: #106d10;
+	--color-darkred: #8e1717;
+	--color-darkgrey: #121212;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	font-family: var(--font-body);
+	color: var(--color-darkgrey);
+	font-size: var(--text-body);
+	margin: 0;
+	line-height: 1.4;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.sr-only {
+	position: absolute;
+	left: -10000px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.container {
+	max-width: 1000px;
+	padding: 50px 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.copy-width {
+	max-width: 700px;
+	margin: auto;
+}
+
+figure {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+section {
+	margin-top: 40px;
+}
+
+/* text */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	/*margin: 0 0 20px;*/
+	font-weight: 700;
+}
+
+h1 {
+	font-size: 32px;
+}
+
+p {
+	font-size: var(--text-p);
+	margin: 0 0 15px;
+	line-height: 1.5;
+	text-align: left;
+}
+
+li {
+	font-size: var(--text-p);
+	margin-bottom: 0.5em;
+}
+
+.chart-title {
+	font-size: var(--text-large);
+}
+
+.chart-note {
+	font-size: var(--text-xsmall);
+}
+
+/* links */
+a {
+	color: var(--color-highlight);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	text-decoration-line: solid;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.social-links {
+	display: block;
+	width: 100%;
+}
+
+a.social {
+	color: #000000;
+	text-decoration: none;
+	display: inline !important;
+	line-height: 2;
+}
+
+.icon-label {
+	margin-left: 6px;
+	vertical-align: top;
+	display: inline-block;
+}
+
+.contacts {
+	margin-top: 20px;
+}
+
+.contact-container {
+	display: inline-block;
+	margin-right: 16px;
+	vertical-align: top;
+}
+
+hr {
+	background: #000000;
+	border: 0;
+	height: 0.5px;
+	display: block;
+}
