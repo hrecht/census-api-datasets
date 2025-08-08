@@ -18,6 +18,8 @@
 		return d[count_var];
 	});
 
+	data.sort((b, a) => a[count_var] - b[count_var]);
+
 	/**
 	 * @typedef {Object} Props
 	 * @property {string} [count_var='count'] - Key name for counts attribute in data.
