@@ -55,6 +55,16 @@ jobs:
           git commit -m "Major data change $TEST ${timestamp}" || exit 0
           git push
 
+      # Pause before deploying to github pages
+      # Otherwise it's happening too quickly to work
+      - name: Pause
+        if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'true'
+        run: |
+          sleep 120
+          echo "Actions paused"
+          
+
+
   build_site:
     needs: check_data
     uses: ./.github/workflows/deploy-site.yml
