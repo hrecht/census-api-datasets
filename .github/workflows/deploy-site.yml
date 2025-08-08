@@ -4,6 +4,9 @@ on:
   push:
     branches: 'main'
   workflow_call:
+    secrets:
+      GH_TOKEN:
+        required: true
 
 jobs:
   build_site:
@@ -13,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          repo-token: ${{ secrets.personal_access_token }}
+          repo-token: ${{ secrets.GH_TOKEN }}
 
       # If you're using pnpm, add this step then change the commands and cache key below to use `pnpm`
       # - name: Install pnpm

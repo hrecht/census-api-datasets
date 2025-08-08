@@ -59,4 +59,4 @@ jobs:
   deploy-site:
     uses: ./.github/workflows/deploy-site.yml
     secrets:
-      token: ${{ secrets.GH_TOKEN }}
+      GH_token: ${{ secrets.GH_TOKEN }}
