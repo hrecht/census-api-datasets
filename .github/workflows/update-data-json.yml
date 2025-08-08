@@ -26,15 +26,15 @@ jobs:
           Rscript scripts/update-metadata.R
           run: echo "endpoints.csv changed:" $UPDATED_DATA
 
+      # Commit or not based on env variable passed from R
+      - name: If the cached CSV has not changed, finish
+        if: env.UPDATED_DATA == 'false'
+        run: echo "no changes, nothing committed"
+
   commit:
     needs: check_data
     runs-on: ubuntu-latest
     steps:
-
-        # Commit or not based on env variable passed from R
-      - name: If the cached CSV has not changed, finish
-        if: env.UPDATED_DATA == 'false'
-        run: echo "no changes, nothing committed"
 
       - name: Set up commit
         if: env.UPDATED_DATA == 'true'
@@ -62,12 +62,8 @@ jobs:
 
   build_site:
     needs: commit
-    runs-on: ubuntu-latest
-    steps:
-      - name: build site
-        if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'true'
-        uses: .github/workflows/deploy-site.yml
-        #secrets:
-        #  token: ${{ secrets.GH_TOKEN }}
+    uses: .github/workflows/deploy-site.yml
+    secrets:
+      token: ${{ secrets.GH_TOKEN }}
         #secrets: inherit
 
