@@ -24,7 +24,7 @@ jobs:
       - name: Run update-metadata.R
         run: |
           Rscript scripts/update-metadata.R
-          run: echo "endpoints.csv changed:" $UPDATED_DATA
+          echo "endpoints.csv changed:" $UPDATED_DATA
 
       # Commit or not based on env variable passed from R
       - name: If the cached CSV has not changed, finish
