@@ -20,7 +20,7 @@ row.names(endpoints_new) <- NULL
 ################################################################
 # Tests for these functions when the data has not ACTUALLY changed
 ################################################################
-test_changes <- F
+test_changes <- T
 
 if (test_changes == T) {
 	system('echo "TEST=TEST" >> "$GITHUB_ENV"')
