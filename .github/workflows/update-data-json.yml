@@ -56,7 +56,3 @@ jobs:
           git commit -m "Major data change $TEST ${timestamp}" || exit 0
           git push
 
-  deploy-site:
-    uses: ./.github/workflows/deploy-site.yml
-    secrets:
-      GH_token: ${{ secrets.GH_TOKEN }}

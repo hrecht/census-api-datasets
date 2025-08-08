@@ -3,10 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: 'main'
-  workflow_call:
-    secrets:
-      GH_TOKEN:
-        required: true
+  workflow_run:
+    workflows: ['Check for metadata changes']
+    types: [completed]
 
 jobs:
   build_site:
@@ -16,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          repo-token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
 
       # If you're using pnpm, add this step then change the commands and cache key below to use `pnpm`
       # - name: Install pnpm
