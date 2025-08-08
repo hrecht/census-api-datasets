@@ -3,11 +3,24 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: 'main'
+  workflow_call:
+    inputs:
+      config-path:
+        required: true
+        type: string
+    secrets:
+      personal_access_token:
+        required: true
 
 jobs:
   build_site:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/labeler@v5
+        with:
+          repo-token: ${{ secrets.personal_access_token }}
+          configuration-path: ${{ inputs.config-path }}
+
       - name: Checkout
         uses: actions/checkout@v4
 

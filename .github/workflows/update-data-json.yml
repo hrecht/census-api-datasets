@@ -58,3 +58,6 @@ jobs:
           timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M')
           git commit -m "Major data change $TEST ${timestamp}" || exit 0
           git push
+
+  deploy-site:
+    uses: ./.github/workflows/deploy-site.yml
