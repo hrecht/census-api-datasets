@@ -5,6 +5,7 @@ on:
     branches: 'main'
     paths:
       - 'src/**'
+      - 'static/'
   workflow_call:
 
 jobs:
