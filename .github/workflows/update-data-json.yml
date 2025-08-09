@@ -30,7 +30,7 @@ jobs:
       #- name: If the cached CSV has not changed, finish
       #  run: echo "no changes, nothing committed"
 
-      - name: Set up commit
+      - name: Commit changes
         run: |
           # Configure git user
           git config user.name "hrecht[bot]"
@@ -39,27 +39,9 @@ jobs:
           # Commit files
           git add .
 
-      - name: Push no data changes update
-        if: env.UPDATED_DATA == 'false' && env.MAJOR_CHANGES == 'false'
-        run: |
-          echo "commit meessage:" $COMMIT_MESSAGE
-          timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M')
-          git commit -m "No data changes $TEST ${timestamp}" || exit 0
+          git commit -m $COMMIT_MESSAGE || exit 0
           git push
 
-      - name: Push minor changes update
-        if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'false'
-        run: |
-          timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M')
-          git commit -m "Minor data change $TEST ${timestamp}" || exit 0
-          git push
-
-      - name: Push major changes update
-        if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'true'
-        run: |
-          timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M')
-          git commit -m "Major data change $TEST ${timestamp}" || exit 0
-          git push
 
       # Pause a little before deploying to github pages
       # Otherwise it's happening too quickly to work
