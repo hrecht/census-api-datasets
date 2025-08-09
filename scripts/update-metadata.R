@@ -118,8 +118,8 @@ if (is_identical) {
 			commit_message <- paste("Major data update", string_time)
 		}
 
-		commit_line <- paste("COMMIT_MESSAGE=", commit_message, ', >> "$GITHUB_ENV"')
-		system(paste('echo "', commit_line, '"'))
+		commit_line <- paste0("COMMIT_MESSAGE='", commit_message, "'", ' >> "$GITHUB_ENV"')
+		system(paste('echo ', commit_line))
 		
 	} else {
 		system('echo "MAJOR_CHANGES=false" >> "$GITHUB_ENV"')
@@ -129,8 +129,8 @@ if (is_identical) {
 		} else {
 			commit_message <- paste("Minor data update", string_time)
 		}
-		commit_line <- paste("COMMIT_MESSAGE=", commit_message, ', >> "$GITHUB_ENV"')
-		system(paste('echo "', commit_line, '"'))
+		commit_line <- paste0("COMMIT_MESSAGE='", commit_message, "'", ' >> "$GITHUB_ENV"')
+		system(paste('echo ', commit_line))
 	}
 	
 	# Update the minimal csv

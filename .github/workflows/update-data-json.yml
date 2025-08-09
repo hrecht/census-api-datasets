@@ -39,7 +39,7 @@ jobs:
           # Commit files
           git add .
 
-          git commit -m $COMMIT_MESSAGE || exit 0
+          git commit -m "$COMMIT_MESSAGE" || exit 0
           git push
 
 
