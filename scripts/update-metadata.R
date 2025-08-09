@@ -56,6 +56,10 @@ if (is_identical) {
 	system('echo "UPDATED_DATA=false" >> "$GITHUB_ENV"')
 	system('echo "MAJOR_CHANGES=false" >> "$GITHUB_ENV"')
 	
+	commit_message <- paste("No data changes", string_time)
+	commit_line <- paste("COMMIT_MESSAGE=", commit_message, ', >> "$GITHUB_ENV"')
+	system(paste('echo', commit_line))
+	
 } else {
 	
 	# If there is a difference, see if there are added and/or removed endpoints

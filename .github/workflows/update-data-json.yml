@@ -63,10 +63,9 @@ jobs:
       # Pause a little before deploying to github pages
       # Otherwise it's happening too quickly to work
       - name: Pause
-        if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'true'
         run: |
           sleep 60
-          echo "Actions paused"
+          echo "Pause before buildinng site"
 
   build_site:
     needs: check_data
