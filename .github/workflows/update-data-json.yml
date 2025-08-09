@@ -39,8 +39,8 @@ jobs:
           # Commit files
           git add .
 
-      - name: Push minor changes update
-        if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'false'
+      - name: Push no data changes update
+        if: env.UPDATED_DATA == 'false' && env.MAJOR_CHANGES == 'false'
         run: |
           timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M')
           git commit -m "No data changes $TEST ${timestamp}" || exit 0
