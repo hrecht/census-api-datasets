@@ -17,13 +17,20 @@ endpoints_new <- listCensusApis()
 endpoints_new <- endpoints_new[order(endpoints_new$vintage, endpoints_new$name, decreasing = T),]
 row.names(endpoints_new) <- NULL
 
+# Time of data checking for commit message and data saving
+current_time <- as.POSIXct(Sys.time(),
+													 tz = "America/New_York")
+string_time <- format(current_time, "%Y-%m-%d %H:%M")
+
 ################################################################
 # Tests for these functions when the data has not ACTUALLY changed
 ################################################################
-test_changes <- F
+test_changes <- T
 
 if (test_changes == T) {
 	system('echo "DATA_TEST=true" >> "$GITHUB_ENV"')
+	test_message <- "TEST"
+	
 	# Change a less-important metadata field
 	endpoints_new[1,1] <- "test"
 	
@@ -40,23 +47,19 @@ if (test_changes == T) {
 	endpoints_new <- endpoints_new[-300,]
 } else {
 	system('echo "DATA_TEST=false" >> "$GITHUB_ENV"')	
+	test_message <- ""
 }
 
-# Is there any difference?
+# Is there any difference between old and new data?
 is_identical <- identical(endpoints_old, endpoints_new)
 print("Are the old and new endpoints metadata identical?")
 print(is_identical)
 
-current_time <- as.POSIXct(Sys.time(),
-													 tz = "America/New_York")
-string_time <- format(current_time, "%Y-%m-%d %H:%M")
-
 if (is_identical) {
 	print("No data changes")
 	system('echo "UPDATED_DATA=false" >> "$GITHUB_ENV"')
-	system('echo "MAJOR_CHANGES=false" >> "$GITHUB_ENV"')
 	
-	commit_message <- paste("No data changes", string_time)
+	commit_message <- ("No data changes")
 	
 } else {
 	
@@ -107,23 +110,10 @@ if (is_identical) {
 								sep = ",", append = T, quote = T,
 								col.names = F, row.names = F)
 		
-		# Save status out to env
-		system('echo "MAJOR_CHANGES=true" >> "$GITHUB_ENV"')
-		
-		if (test_changes == TRUE) {
-			commit_message <- paste("Major data update TEST", string_time)
-		} else {
-			commit_message <- paste("Major data update", string_time)
-		}
+		commit_message <- "Major data update"
 		
 	} else {
-		system('echo "MAJOR_CHANGES=false" >> "$GITHUB_ENV"')
-
-		if (test_changes == TRUE) {
-			commit_message <- paste("Minor data update TEST", string_time)
-		} else {
-			commit_message <- paste("Minor data update", string_time)
-		}
+		commit_message <- "Minor data update"
 	}
 	
 	# Update the minimal csv
@@ -143,5 +133,6 @@ update_json <- paste0('{"updated": "', current_time, '"}')
 writeLines(update_json, "src/routes/_data/update-time.json")
 
 # Prepare commit message, run through Github actions
-commit_line <- paste0("COMMIT_MESSAGE='", commit_message, "'", ' >> "$GITHUB_ENV"')
+commit_text <- paste(string_time, commit_message, test_message)
+commit_line <- paste0("COMMIT_MESSAGE='", commit_text, "'", ' >> "$GITHUB_ENV"')
 system(paste('echo ', commit_line))
