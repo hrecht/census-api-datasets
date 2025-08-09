@@ -42,6 +42,7 @@ jobs:
       - name: Push no data changes update
         if: env.UPDATED_DATA == 'false' && env.MAJOR_CHANGES == 'false'
         run: |
+          echo "commit meessage:" $COMMIT_MESSAGE
           timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M')
           git commit -m "No data changes $TEST ${timestamp}" || exit 0
           git push
