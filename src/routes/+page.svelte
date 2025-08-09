@@ -101,6 +101,7 @@
 <div class="container">
 	<div class="copy-width">
 		<h1>Tracking Census Dataset Changes</h1>
+		<div class="update-time">Last checked for updates: {format_date(change_date)}</div>
 
 		<p>
 			The <a href="https://www.census.gov/data/developers/data-sets.html" target="_blank"
@@ -114,8 +115,6 @@
 
 		<div class="chart">
 			<h2 class="chart-title">Recently added and removed datasets</h2>
-			<div class="update-time">Last checked for updates: {format_date(change_date)}</div>
-
 			<ChangeTable />
 			<p class="chart-note">
 				Note: Dataset titles and descriptions were written by the Census Bureau.
@@ -132,7 +131,7 @@
 
 		<div class="chart">
 			<figure>
-				<h2 class="chart-title">Dataset types</h2>
+				<figcaption class="chart-title">Dataset types</figcaption>
 				<BarTable
 					data={type_sums}
 					count_var={'datasets'}
@@ -142,7 +141,7 @@
 			</figure>
 
 			<figure>
-				<h2 class="chart-title">Dataset vintages</h2>
+				<figcaption class="chart-title">Dataset vintages</figcaption>
 				<div class="chart-container">
 					<LayerCake
 						padding={{ top: 5, right: 5, bottom: 20, left: 30 }}
@@ -176,38 +175,41 @@
 
 		<h2>How to use the APIs</h2>
 		<p>
-			Several libraries make it easy to get data in your programming language of choice. The
-			APIs return data in a non-standard JSON response format — I highly recommend using one of
-			these wrapper libraries to access the data. Options include:
+			Several libraries make it easy to get data in your programming language of choice. The APIs
+			return data in a non-standard JSON response format — I highly recommend using one of these
+			wrapper libraries to access the data. Options include:
 		</p>
 		<ul>
 			<li>
-				R: <span class="code"
+				R <span class="code"
 					><a href="https://www.hrecht.com/censusapi/" target="_blank">censusapi</a></span
-				> provides access to any dataset in the APIs as soon as it’s released
+				>: access any dataset in the APIs as soon as it’s released
 			</li>
 			<li>
-				R: <span class="code"
+				R <span class="code"
 					><a href="https://walker-data.com/tidycensus/" target="_blank">tidycensus</a></span
-				> provides access to core datasets including the Decennial Census and American Community Survey
-				with nice helper functions for analysis
+				>: access core datasets including the Decennial Census and American Community Survey with
+				helper functions for analysis
 			</li>
 			<li>
-				Python: <span class="code"
+				Python <span class="code"
 					><a href="https://github.com/datamade/census" target="_blank">census</a></span
-				> provides access to key American Community Survey and Decennial Census datasets
+				>: access key American Community Survey and Decennial Census datasets
 			</li>
 			<li>
-				Stata: <span class="code"
+				Stata <span class="code"
 					><a href="https://centeronbudget.github.io/getcensus/" target="_blank">getcensus</a></span
-				> provides access to American Community Survey datasets
+				>: access American Community Survey datasets
 			</li>
 		</ul>
 		<p>
 			The Census Bureau provides <a
 				href="https://www.census.gov/data/developers/guidance.html"
 				target="_blank">guidance and tutorials</a
-			> focused on accessing their APIs directly in the browser. You can also access some, but not all, of the API datasets at <a href="https://data.census.gov/" target="_blank">data.census.gov</a>.
+			>
+			focused on using their APIs directly in a web browser. You can also access some, but not all, of
+			these datasets at
+			<a href="https://data.census.gov/" target="_blank">data.census.gov</a>.
 		</p>
 
 		<!-- <figure class="flex-child">
@@ -236,7 +238,7 @@
 				</div>
 			</figure> -->
 
-		<section id="about">
+		<footer id="about">
 			<h2 class="chart-title">About this tracker</h2>
 			<p>Built by <a href="https://www.hrecht.com/" target="_blank">Hannah Recht</a></p>
 
@@ -275,7 +277,7 @@
 					>See the code on Github.</a
 				>
 			</p>
-		</section>
+		</footer>
 	</div>
 </div>
 
@@ -292,12 +294,36 @@
 	}
 
 	h1,
-	h2 {
+	h2,
+	figcaption {
 		font-family: var(--font-mono);
 	}
 
+	h2,
+	figcaption {
+		margin-bottom: 16px;
+		margin-top: 16px;
+	}
+
+
+	@media only screen and (max-width: 700px) {
+		h1 {
+			font-size: 32px;
+			margin-bottom: 4px;
+		}
+	}
+
+	@media only screen and (min-width: 699px) {
+		h1 {
+			font-size: 36px;
+			margin-bottom: 4px;
+		}
+	}
 	.update-time {
-		padding-bottom: 1em;
+		padding-bottom: 24px;
+		font-size: var(--text-xsmall);
+		text-transform: uppercase;
+		font-family: var(--font-mono);
 	}
 	#about {
 		padding: 40px;

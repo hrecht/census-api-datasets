@@ -51,6 +51,9 @@ body {
 	margin-right: auto;
 }
 
+footer {
+	margin-top: 50px;
+}
 .copy-width {
 	max-width: 700px;
 	margin: auto;
@@ -71,13 +74,10 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+figcaption {
 	/*margin: 0 0 20px;*/
 	font-weight: 700;
-}
-
-h1 {
-	font-size: 32px;
 }
 
 p {
