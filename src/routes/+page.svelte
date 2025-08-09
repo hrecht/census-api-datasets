@@ -99,10 +99,11 @@
 </script>
 
 <div class="container">
-	<div class="copy-width">
+	<header>
 		<h1>Tracking Census Dataset Changes</h1>
-		<div class="update-time">Last checked for updates: {format_date(change_date)}</div>
-
+		<p class="update-time">Last checked for updates: {format_date(change_date)}</p>
+	</header>
+	<main>
 		<p>
 			The <a href="https://www.census.gov/data/developers/data-sets.html" target="_blank"
 				>U.S. Census Bureau APIs</a
@@ -237,48 +238,47 @@
 					</LayerCake>
 				</div>
 			</figure> -->
+	</main>
+	<footer id="about">
+		<h2 class="chart-title">About this tracker</h2>
+		<p>Built by <a href="https://www.hrecht.com/" target="_blank">Hannah Recht</a></p>
 
-		<footer id="about">
-			<h2 class="chart-title">About this tracker</h2>
-			<p>Built by <a href="https://www.hrecht.com/" target="_blank">Hannah Recht</a></p>
+		<p>
+			<strong>Disclaimer:</strong> This product uses the Census Bureau Data API but is not endorsed or
+			certified by the Census Bureau.
+		</p>
 
-			<p>
-				<strong>Disclaimer:</strong> This product uses the Census Bureau Data API but is not endorsed
-				or certified by the Census Bureau.
-			</p>
-
-			<p>
-				<strong>Why build this?</strong> The Census Bureau doesn’t maintain a public changelog or regularly
-				share updates about changes to their sprawling API universe. As a longtime Census data user and
-				package developer I’ve found it nearly impossible to know when data is added or removed. This
-				project attempts to publicly catalog the changes.
-			</p>
-			<p>
-				This tracker uses the R <span class="code">
-					<a href="https://www.hrecht.com/censusapi/" target="_blank">censusapi</a>
-				</span>
-				package
-				<span class="code"
-					><a href="https://www.hrecht.com/censusapi/reference/listCensusApis.html" target="_blank"
-						>listCensusApis()</a
-					></span
-				> function to grab key info about available endpoints each day using Github actions. This page
-				is built with Svelte.
-			</p>
-			<p>
-				Datasets that are added or removed are counted as a “major change” and tracked here. The
-				dataset change date reflects when the tracker script was run and thus might show a change
-				made the prior day, between tracker runs. Minor changes to dataset metadata, like an updated
-				title or description, are archived in the project repository but not listed here. Changes
-				within existing datasets, like modified variables or geographies, are not tracked.
-			</p>
-			<p>
-				<a href="https://github.com/hrecht/census-api-datasets" target="_blank"
-					>See the code on Github.</a
-				>
-			</p>
-		</footer>
-	</div>
+		<p>
+			<strong>Why build this?</strong> The Census Bureau doesn’t maintain a public changelog or regularly
+			share updates about changes to their sprawling API universe. As a longtime Census data user and
+			package developer I’ve found it nearly impossible to know when data is added or removed. This project
+			attempts to publicly catalog the changes.
+		</p>
+		<p>
+			This tracker uses the R <span class="code">
+				<a href="https://www.hrecht.com/censusapi/" target="_blank">censusapi</a>
+			</span>
+			package
+			<span class="code"
+				><a href="https://www.hrecht.com/censusapi/reference/listCensusApis.html" target="_blank"
+					>listCensusApis()</a
+				></span
+			> function to grab key info about available endpoints each day using Github actions. This page
+			is built with Svelte.
+		</p>
+		<p>
+			Datasets that are added or removed are counted as a “major change” and tracked here. The
+			dataset change date reflects when the tracker script was run and thus might show a change made
+			the prior day, between tracker runs. Minor changes to dataset metadata, like an updated title
+			or description, are archived in the project repository but not listed here. Changes within
+			existing datasets, like modified variables or geographies, are not tracked.
+		</p>
+		<p>
+			<a href="https://github.com/hrecht/census-api-datasets" target="_blank"
+				>See the code on Github.</a
+			>
+		</p>
+	</footer>
 </div>
 
 <style>
@@ -305,7 +305,6 @@
 		margin-top: 16px;
 	}
 
-
 	@media only screen and (max-width: 700px) {
 		h1 {
 			font-size: 32px;
@@ -319,8 +318,9 @@
 			margin-bottom: 4px;
 		}
 	}
+
 	.update-time {
-		padding-bottom: 24px;
+		margin-bottom: 0px;
 		font-size: var(--text-xsmall);
 		text-transform: uppercase;
 		font-family: var(--font-mono);
