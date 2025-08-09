@@ -47,15 +47,16 @@ is_identical <- identical(endpoints_old, endpoints_new)
 print("Are the old and new endpoints metadata identical?")
 print(is_identical)
 
+current_time <- as.POSIXct(Sys.time(),
+													 tz = "America/New_York")
+string_time <- format(current_time, "%Y-%m-%d %H:%M")
+
 if (is_identical) {
 	print("No data changes")
 	system('echo "UPDATED_DATA=false" >> "$GITHUB_ENV"')
 	system('echo "MAJOR_CHANGES=false" >> "$GITHUB_ENV"')
 	
 } else {
-	current_time <- as.POSIXct(Sys.time(),
-														 tz = "America/New_York")
-	string_time <- format(current_time, "%Y-%m-%d %H:%M")
 	
 	# If there is a difference, see if there are added and/or removed endpoints
 	
