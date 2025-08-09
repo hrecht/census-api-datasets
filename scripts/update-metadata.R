@@ -25,7 +25,7 @@ string_time <- format(current_time, "%Y-%m-%d %H:%M")
 ################################################################
 # Tests for these functions when the data has not ACTUALLY changed
 ################################################################
-test_changes <- F
+test_changes <- T
 
 if (test_changes == T) {
 	system('echo "DATA_TEST=true" >> "$GITHUB_ENV"')
