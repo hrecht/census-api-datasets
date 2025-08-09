@@ -2,7 +2,7 @@
 	/************** imports **************/
 	// modules
 	import { LayerCake, Svg, flatten, stack } from 'layercake';
-	import { scaleBand, scaleOrdinal, groups, extent, utcFormat } from 'd3';
+	import { scaleBand, scaleOrdinal, groups, extent } from 'd3';
 
 	// data
 	import update_time from './_data/update-time.json';
@@ -22,10 +22,15 @@
 	/************* prep data **************/
 	// last checked for updates
 	const change_date = new Date(update_time.updated);
-	console.log(change_date)
 
-	const formatDate = utcFormat("%b %d, %Y");
-	console.log(formatDate(change_date))
+	function format_date(myDate) {
+		let formatted = new Intl.DateTimeFormat('en-US', {
+			year: 'numeric',
+			month: 'short',
+			day: 'numeric'
+		}).format(new Date(myDate));
+		return formatted;
+	}
 
 	endpoints.forEach((d) => {
 		d.vintage = +d.vintage;
@@ -109,7 +114,7 @@
 
 		<div class="chart">
 			<h2 class="chart-title">Recently added and removed datasets</h2>
-			<div class="update-time">Last checked for updates {formatDate(change_date)}</div>
+			<div class="update-time">Last checked for updates: {format_date(change_date)}</div>
 
 			<ChangeTable />
 			<p class="chart-note">

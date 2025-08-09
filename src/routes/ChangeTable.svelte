@@ -10,7 +10,7 @@
 	function format_date(myDate) {
 		let formatted = new Intl.DateTimeFormat('en-US', {
 			year: 'numeric',
-			month: 'numeric',
+			month: 'short',
 			day: 'numeric'
 		}).format(new Date(myDate));
 		return formatted;
