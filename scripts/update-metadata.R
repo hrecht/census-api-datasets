@@ -48,7 +48,7 @@ print("Are the old and new endpoints metadata identical?")
 print(is_identical)
 
 if (is_identical) {
-	print("Nothing to change")
+	print("No data changes")
 	system('echo "UPDATED_DATA=false" >> "$GITHUB_ENV"')
 	system('echo "MAJOR_CHANGES=false" >> "$GITHUB_ENV"')
 	
@@ -118,10 +118,10 @@ if (is_identical) {
 	print("Updating full data/data.json")
 	download.file("https://api.census.gov/data.json", destfile = "data/data.json")
 	
-	# Update timestamp in update-time.txt
-	update_json <- paste0('{"updated": "', current_time, '"}')
-	writeLines(update_json, "src/routes/_data/update-time.json")
-	
 	# Save out the update status to Github actions env
 	system('echo "UPDATED_DATA=true" >> "$GITHUB_ENV"')
 }
+
+# Update timestamp for page
+update_json <- paste0('{"updated": "', current_time, '"}')
+writeLines(update_json, "src/routes/_data/update-time.json")
