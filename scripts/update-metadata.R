@@ -57,8 +57,8 @@ if (is_identical) {
 	system('echo "MAJOR_CHANGES=false" >> "$GITHUB_ENV"')
 	
 	commit_message <- paste("No data changes", string_time)
-	commit_line <- paste("COMMIT_MESSAGE=", commit_message, ', >> "$GITHUB_ENV"')
-	system(paste('echo "', commit_line, '"'))
+	commit_line <- paste0("COMMIT_MESSAGE='", commit_message, "'", ' >> "$GITHUB_ENV"')
+	system(paste('echo ', commit_line))
 	
 } else {
 	
