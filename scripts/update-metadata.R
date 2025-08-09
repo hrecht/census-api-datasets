@@ -25,17 +25,19 @@ string_time <- format(current_time, "%Y-%m-%d %H:%M")
 ################################################################
 # Tests for these functions when the data has not ACTUALLY changed
 ################################################################
-test_changes <- T
+test_changes <- F
 
 if (test_changes == T) {
 	system('echo "DATA_TEST=true" >> "$GITHUB_ENV"')
 	test_message <- "TEST"
 	
+	random_rows <- sample(1:nrow(endpoints_new), 3, replace=FALSE)
+	
 	# Change a less-important metadata field
 	endpoints_new[1,1] <- "test"
 	
 	# Fake new row
-	fake_row <- endpoints_old[100,]
+	fake_row <- endpoints_old[random_rows[1],]
 	fake_row$name <- "test/test"
 	fake_row$title <- "My fake dataset"
 	fake_row$description <- "This is a fake test."
@@ -43,8 +45,8 @@ if (test_changes == T) {
 	endpoints_new <- rbind(fake_row, endpoints_new)
 	
 	# Fake remove row
-	endpoints_new <- endpoints_new[-27,]
-	endpoints_new <- endpoints_new[-300,]
+	endpoints_new <- endpoints_new[-random_rows[2],]
+	endpoints_new <- endpoints_new[-random_rows[3],]
 } else {
 	system('echo "DATA_TEST=false" >> "$GITHUB_ENV"')	
 	test_message <- ""
