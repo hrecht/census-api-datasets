@@ -119,7 +119,8 @@ if (is_identical) {
 	download.file("https://api.census.gov/data.json", destfile = "data/data.json")
 	
 	# Update timestamp in update-time.txt
-	writeLines(string_time, "data/update-time.txt")
+	update_json <- paste0('{"updated": "', current_time, '"}')
+	writeLines(update_json, "src/routes/_data/update-time.json")
 	
 	# Save out the update status to Github actions env
 	system('echo "UPDATED_DATA=true" >> "$GITHUB_ENV"')

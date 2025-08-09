@@ -2,9 +2,10 @@
 	/************** imports **************/
 	// modules
 	import { LayerCake, Svg, flatten, stack } from 'layercake';
-	import { scaleBand, scaleOrdinal, groups, extent } from 'd3';
+	import { scaleBand, scaleOrdinal, groups, extent, utcFormat } from 'd3';
 
 	// data
+	import update_time from './_data/update-time.json';
 	import endpoints from './_data/endpoints.csv';
 
 	// components
@@ -19,6 +20,13 @@
 	import AxisY from './_components/AxisY.svelte';
 
 	/************* prep data **************/
+	// last checked for updates
+	const change_date = new Date(update_time.updated);
+	console.log(change_date)
+
+	const formatDate = utcFormat("%b %d, %Y");
+	console.log(formatDate(change_date))
+
 	endpoints.forEach((d) => {
 		d.vintage = +d.vintage;
 	});
@@ -89,7 +97,6 @@
 	<div class="copy-width">
 		<h1>Tracking Census Dataset Changes</h1>
 
-		<p>Testing</p>
 		<p>
 			The <a href="https://www.census.gov/data/developers/data-sets.html" target="_blank"
 				>U.S. Census Bureau APIs</a
@@ -102,6 +109,8 @@
 
 		<div class="chart">
 			<h2 class="chart-title">Recently added and removed datasets</h2>
+			<div class="update-time">Last checked for updates {formatDate(change_date)}</div>
+
 			<ChangeTable />
 			<p class="chart-note">
 				Note: Dataset titles and descriptions were written by the Census Bureau.
@@ -282,6 +291,9 @@
 		font-family: var(--font-mono);
 	}
 
+	.update-time {
+		padding-bottom: 1em;
+	}
 	#about {
 		padding: 40px;
 		border: 1px solid var(--color-highlight);

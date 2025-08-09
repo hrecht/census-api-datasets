@@ -27,12 +27,10 @@ jobs:
           echo "endpoints.csv changed:" $UPDATED_DATA
 
       # Commit or not based on env variable passed from R
-      - name: If the cached CSV has not changed, finish
-        if: env.UPDATED_DATA == 'false'
-        run: echo "no changes, nothing committed"
+      #- name: If the cached CSV has not changed, finish
+      #  run: echo "no changes, nothing committed"
 
       - name: Set up commit
-        if: env.UPDATED_DATA == 'true'
         run: |
           # Configure git user
           git config user.name "hrecht[bot]"
@@ -40,6 +38,13 @@ jobs:
 
           # Commit files
           git add .
+
+      - name: Push minor changes update
+        if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'false'
+        run: |
+          timestamp=$(TZ=:America/New_York date '+%Y-%m-%d %H:%M')
+          git commit -m "No data changes $TEST ${timestamp}" || exit 0
+          git push
 
       - name: Push minor changes update
         if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'false'
@@ -55,15 +60,13 @@ jobs:
           git commit -m "Major data change $TEST ${timestamp}" || exit 0
           git push
 
-      # Pause before deploying to github pages
+      # Pause a little before deploying to github pages
       # Otherwise it's happening too quickly to work
       - name: Pause
         if: env.UPDATED_DATA == 'true' && env.MAJOR_CHANGES == 'true'
         run: |
-          sleep 120
+          sleep 60
           echo "Actions paused"
-          
-
 
   build_site:
     needs: check_data
