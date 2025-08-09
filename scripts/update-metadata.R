@@ -23,7 +23,7 @@ row.names(endpoints_new) <- NULL
 test_changes <- F
 
 if (test_changes == T) {
-	system('echo "TEST=TEST" >> "$GITHUB_ENV"')
+	system('echo "DATA_TEST=true" >> "$GITHUB_ENV"')
 	# Change a less-important metadata field
 	endpoints_new[1,1] <- "test"
 	
@@ -39,7 +39,7 @@ if (test_changes == T) {
 	endpoints_new <- endpoints_new[-27,]
 	endpoints_new <- endpoints_new[-300,]
 } else {
-	system('echo "TEST= " >> "$GITHUB_ENV"')	
+	system('echo "DATA_TEST=false" >> "$GITHUB_ENV"')	
 }
 
 # Is there any difference?
@@ -57,8 +57,6 @@ if (is_identical) {
 	system('echo "MAJOR_CHANGES=false" >> "$GITHUB_ENV"')
 	
 	commit_message <- paste("No data changes", string_time)
-	commit_line <- paste0("COMMIT_MESSAGE='", commit_message, "'", ' >> "$GITHUB_ENV"')
-	system(paste('echo ', commit_line))
 	
 } else {
 	
@@ -117,9 +115,6 @@ if (is_identical) {
 		} else {
 			commit_message <- paste("Major data update", string_time)
 		}
-
-		commit_line <- paste0("COMMIT_MESSAGE='", commit_message, "'", ' >> "$GITHUB_ENV"')
-		system(paste('echo ', commit_line))
 		
 	} else {
 		system('echo "MAJOR_CHANGES=false" >> "$GITHUB_ENV"')
@@ -129,8 +124,6 @@ if (is_identical) {
 		} else {
 			commit_message <- paste("Minor data update", string_time)
 		}
-		commit_line <- paste0("COMMIT_MESSAGE='", commit_message, "'", ' >> "$GITHUB_ENV"')
-		system(paste('echo ', commit_line))
 	}
 	
 	# Update the minimal csv
@@ -148,3 +141,7 @@ if (is_identical) {
 # Update timestamp for page
 update_json <- paste0('{"updated": "', current_time, '"}')
 writeLines(update_json, "src/routes/_data/update-time.json")
+
+# Prepare commit message, run through Github actions
+commit_line <- paste0("COMMIT_MESSAGE='", commit_message, "'", ' >> "$GITHUB_ENV"')
+system(paste('echo ', commit_line))

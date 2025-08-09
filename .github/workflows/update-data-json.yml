@@ -26,10 +26,7 @@ jobs:
           Rscript scripts/update-metadata.R
           echo "endpoints.csv changed:" $UPDATED_DATA
 
-      # Commit or not based on env variable passed from R
-      #- name: If the cached CSV has not changed, finish
-      #  run: echo "no changes, nothing committed"
-
+      # Commit using message text prepared in R
       - name: Commit changes
         run: |
           # Configure git user
