@@ -1,5 +1,6 @@
 "date","test_data","test_revert","change","endpoints_total","endpoints_added","urls_added","endpoints_removed","urls_removed"
-"2025-12-18 06:39",FALSE,FALSE,"No data changes",1730,0,"",0,""
+"2025-12-18 10:45",FALSE,FALSE,"Major data update",1733,3,"http://api.census.gov/data/2024/cps/school/oct, http://api.census.gov/data/2022/ecnvalcon, http://api.census.gov/data/2022/ecnkob",0,""
+"2025-12-18 06:39",FALSE,FALSE,"No data changes",1730,0,"",0,
 "2025-12-17 15:45",FALSE,FALSE,"No data changes",1730,0,"",0,
 "2025-12-17 10:46",FALSE,FALSE,"No data changes",1730,0,"",0,
 "2025-12-17 06:40",FALSE,FALSE,"No data changes",1730,0,"",0,
