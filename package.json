@@ -12,17 +12,17 @@
 		"lint": "prettier --check . && eslint ."
 	},
 	"devDependencies": {
-		"@eslint/compat": "^1.2.5",
-		"@eslint/js": "^9.18.0",
+		"@eslint/compat": "^2.0.3",
+		"@eslint/js": "^10.0.1",
 		"@rollup/plugin-dsv": "^3.0.5",
 		"@sveltejs/adapter-static": "^3.0.8",
 		"@sveltejs/kit": "^2.22.0",
 		"@sveltejs/vite-plugin-svelte": "^6.0.0",
 		"@vincjo/datatables": "^2.6.2",
-		"eslint": "^9.18.0",
+		"eslint": "^10.0.3",
 		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-svelte": "^3.0.0",
-		"globals": "^16.0.0",
+		"globals": "^17.4.0",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
 		"svelte": "^5.0.0",
@@ -31,7 +31,7 @@
 	"dependencies": {
 		"d3-array": "^3.2.4",
 		"d3-scale": "^4.0.2",
-		"layercake": "^9.0.0",
+		"layercake": "^10.0.2",
 		"svelte-highlight": "^7.8.3"
 	}
 }

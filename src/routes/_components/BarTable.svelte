@@ -40,7 +40,11 @@
 	<tbody>
 		{#each data as d, i}
 			<tr>
-				<td class="name">{d[group_var]}</td>
+				{#if d[group_var] === ""}
+					<td class="name">Undefined</td>
+				{:else}
+			  		<td class="name">{d[group_var]}</td>
+			  	{/if}
 				<td class="count">
 					<!-- List the count in plain text for screen readers, draw a bar and label for visual viewers but hide from sr -->
 					<span class="sr-only">{d[count_var]}</span>
