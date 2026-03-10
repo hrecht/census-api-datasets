@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 11,15,20 * * *"
+    - cron: "30 10,14,19 * * *"
 
 name: Check for metadata changes
 
@@ -13,7 +13,7 @@ jobs:
       POST_BSKY: ${{ steps.rscript.outputs.POST_BSKY}}
       POST_TEXT: ${{ steps.rscript.outputs.POST_TEXT}}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
     
       # Install R and dependencies
       - uses: r-lib/actions/setup-r@v2
