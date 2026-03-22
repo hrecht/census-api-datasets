@@ -1,4 +1,5 @@
 <script>
+	import { extent, groups, rollup } from 'd3-array';
 	import data from './_data/endpoint-changes.csv';
 
 	data.forEach((d) => {
@@ -6,6 +7,11 @@
 	});
 
 	data.sort((b, a) => a.change_date - b.change_date);
+
+	const changes = rollup(data, (D) => D.length, (d) => d.change);
+
+	const changes_added = changes.get("Added");
+	const changes_removed = (changes.get("Removed") === undefined) ? 0:changes.get("Removed");
 
 	function format_date(myDate) {
 		let formatted = new Intl.DateTimeFormat('en-US', {
@@ -23,99 +29,114 @@
 	//let { data } = $props();
 </script>
 
-<!-- Show or hide dataset descriptions (often lengthy) in table -->
-<div class="button-group">
-	<button
-		class="table-button"
-		type="button"
-		onclick={() => {
-			expanded_desc = !expanded_desc;
-		}}
-	>
-		{#if expanded_desc}
-			&#8722; Hide descriptions
+<p>{changes_added} dataset endpoints have been added and {changes_removed} removed since July 2025.</p>
+
+<div class="chart">
+	<h2 class="chart-title">
+		{#if (changes_removed === undefined | changes_removed === 0)}
+			Recently added datasets
 		{:else}
-			&#43; Show descriptions
-		{/if}</button
-	>
-	<!--div class="checkbox">
-		<div class="toggle-label-text">Show dataset descriptions</div>
-		<div class="toggle-holder">
-			<input
-				class="toggle-input"
-				id="descriptions-toggle"
-				type="checkbox"
-				role="switch"
-				name="descriptions-toggle"
-				bind:checked={expanded_desc}
-			/>
-			<label class="toggle-label" for="descriptions-toggle"> Toggle </label>
-		</div>
-	</div-->
-</div>
-
-<table id="tb" {expanded_desc} {all_rows}>
-	<thead>
-		<tr class="border-bottom">
-			<th class="col-change" scope="col">Change</th>
-			<th class="col-endpoint" scope="col">Endpoint</th>
-			<th class="col-type" scope="col">Type</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#each data as d}
-			<tr>
-				<td class={d.change + ' change info'}>{d.change} {format_date(d.change_date)}</td>
-				<td class="endpoint info"
-					><a href={d.url.replace('http://', 'https://') + '.html'} target="_blank"
-						>{d.url.replace('http://api.census.gov/data/', '')}</a
-					></td
-				>
-				<td class="type info">{d.type}</td>
-			</tr>
-			<tr class="border-bottom">
-				<td colspan="3"
-					><div class="title">{d.title}</div>
-					<p class="description">{d.description}</p></td
-				>
-			</tr>
-		{/each}
-	</tbody>
-</table>
-
-<!-- Make toggle buttons for showing all/fewer rows IF there are many rows -->
-{#if data.length > 8}
+			Recently added and removed datasets
+		{/if}
+	</h2>
+	<!-- Show or hide dataset descriptions (often lengthy) in table -->
 	<div class="button-group">
 		<button
 			class="table-button"
 			type="button"
 			onclick={() => {
-				all_rows = !all_rows;
+				expanded_desc = !expanded_desc;
 			}}
 		>
-			{#if all_rows}
-				&#8722; Show fewer rows
+			{#if expanded_desc}
+				&#8722; Hide descriptions
 			{:else}
-				&#43; Show all {data.length} rows
+				&#43; Show descriptions
 			{/if}</button
 		>
-
 		<!--div class="checkbox">
-			<div class="toggle-label-text">Show all {data.length} rows</div>
+			<div class="toggle-label-text">Show dataset descriptions</div>
 			<div class="toggle-holder">
 				<input
 					class="toggle-input"
-					id="rows-toggle"
+					id="descriptions-toggle"
 					type="checkbox"
 					role="switch"
-					name="rows-toggle"
-					bind:checked={all_rows}
+					name="descriptions-toggle"
+					bind:checked={expanded_desc}
 				/>
-				<label class="toggle-label" for="rows-toggle"> Toggle </label>
+				<label class="toggle-label" for="descriptions-toggle"> Toggle </label>
 			</div>
 		</div-->
 	</div>
-{/if}
+
+	<table id="tb" {expanded_desc} {all_rows}>
+		<thead>
+			<tr class="border-bottom">
+				<th class="col-change" scope="col">Change</th>
+				<th class="col-endpoint" scope="col">Endpoint</th>
+				<th class="col-type" scope="col">Type</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each data as d}
+				<tr>
+					<td class={d.change + ' change info'}>{d.change} {format_date(d.change_date)}</td>
+					<td class="endpoint info"
+						><a href={d.url.replace('http://', 'https://') + '.html'} target="_blank"
+							>{d.url.replace('http://api.census.gov/data/', '')}</a
+						></td
+					>
+					<td class="type info">{d.type}</td>
+				</tr>
+				<tr class="border-bottom">
+					<td colspan="3"
+						><div class="title">{d.title}</div>
+						<p class="description">{d.description}</p></td
+					>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+
+	<!-- Make toggle buttons for showing all/fewer rows IF there are many rows -->
+	{#if data.length > 8}
+		<div class="button-group">
+			<button
+				class="table-button"
+				type="button"
+				onclick={() => {
+					all_rows = !all_rows;
+				}}
+			>
+				{#if all_rows}
+					&#8722; Show fewer rows
+				{:else}
+					&#43; Show all {data.length} rows
+				{/if}</button
+			>
+
+			<!--div class="checkbox">
+				<div class="toggle-label-text">Show all {data.length} rows</div>
+				<div class="toggle-holder">
+					<input
+						class="toggle-input"
+						id="rows-toggle"
+						type="checkbox"
+						role="switch"
+						name="rows-toggle"
+						bind:checked={all_rows}
+					/>
+					<label class="toggle-label" for="rows-toggle"> Toggle </label>
+				</div>
+			</div-->
+		</div>
+	{/if}
+
+	<p class="chart-note">
+		Note: Dataset titles and descriptions were written by the Census Bureau.
+	</p>
+</div>
 
 <style>
 	table {

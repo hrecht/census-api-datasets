@@ -91,16 +91,6 @@
 	<header>
 		<h1>Tracking Census Dataset Changes</h1>
 		<p class="update-time">Last checked for updates: {format_date(change_date)}</p>
-	</header>
-	<main>
-		<p>
-			The <a href="https://www.census.gov/data/developers/data-sets.html" target="_blank"
-				>U.S. Census Bureau APIs</a
-			>
-			give programmers access to {endpoints.length.toLocaleString('en-US')} different dataset endpoints.
-			This page automatically checks the list of endpoints every day and tracks when datasets are added
-			to or removed from the APIs. <a href="#about">Read more about this project</a>.
-		</p>
 
 		<div class="contact-container">
 			<p>
@@ -113,14 +103,20 @@
 				</a>
 			</p>
 		</div>
+	</header>
+	<main>
 
-		<div class="chart">
-			<h2 class="chart-title">Recently added and removed datasets</h2>
-			<ChangeTable />
-			<p class="chart-note">
-				Note: Dataset titles and descriptions were written by the Census Bureau.
-			</p>
-		</div>
+		<p>
+			The <a href="https://www.census.gov/data/developers/data-sets.html" target="_blank"
+				>U.S. Census Bureau APIs</a
+			>
+			give programmers access to {endpoints.length.toLocaleString('en-US')} different dataset endpoints.
+			This page automatically checks the list of endpoints every day and tracks when datasets are added
+			to or removed from the APIs. <a href="#about">Read more about this project</a>.
+		</p>
+
+
+		<ChangeTable />
 
 		<p>
 			The {endpoints.length.toLocaleString('en-US')} datasets in the APIs are broken down into three
@@ -308,16 +304,6 @@
 </div>
 
 <style>
-	.chart {
-		padding-bottom: 20px;
-		padding-top: 20px;
-	}
-
-	.chart-container {
-		width: 100%;
-		height: 300px;
-		overflow-x: hidden;
-	}
 
 	h1,
 	h2,
@@ -346,7 +332,7 @@
 	}
 
 	.update-time {
-		margin-bottom: 0px;
+		margin-bottom: 0.5em;
 		font-size: var(--text-xsmall);
 		text-transform: uppercase;
 		font-family: var(--font-mono);

@@ -80,7 +80,7 @@ figcaption {
 
 p {
 	font-size: var(--text-p);
-	margin: 0 0 15px;
+	margin: 0 0 1em;
 	line-height: 1.5;
 	text-align: left;
 }
@@ -96,6 +96,17 @@ li {
 
 .chart-note {
 	font-size: var(--text-xsmall);
+}
+
+.chart {
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+.chart-container {
+	width: 100%;
+	height: 300px;
+	overflow-x: hidden;
 }
 
 /* links */
