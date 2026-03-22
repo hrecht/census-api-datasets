@@ -1,5 +1,5 @@
 <script>
-	import { extent, groups, rollup } from 'd3-array';
+	import { rollup } from 'd3-array';
 	import data from './_data/endpoint-changes.csv';
 
 	data.forEach((d) => {
