@@ -286,7 +286,7 @@
 				><a href="https://www.hrecht.com/censusapi/reference/listCensusApis.html" target="_blank"
 					>listCensusApis()</a
 				></span
-			> function to grab key info about available endpoints each day using Github actions.
+			> function to grab key info about available endpoints each day using Github Actions.
 		</p>
 		<p>
 			Datasets that are added or removed are counted as a “major change” and tracked here. The
