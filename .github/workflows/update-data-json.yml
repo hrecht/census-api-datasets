@@ -25,6 +25,8 @@ jobs:
       # Run R script to grab metadata and compare against saved .csv
       - name: Run update-metadata.R
         id: rscript
+        env:
+          CENSUS_KEY: ${{ secrets.CENSUS_KEY }}
         run: |
           Rscript scripts/update-metadata.R
 
