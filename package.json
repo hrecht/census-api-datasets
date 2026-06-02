@@ -12,21 +12,21 @@
 		"lint": "prettier --check . && eslint ."
 	},
 	"devDependencies": {
-		"@eslint/compat": "^2.0.3",
+		"@eslint/compat": "^2.1.0",
 		"@eslint/js": "^10.0.1",
-		"@rollup/plugin-dsv": "^3.0.5",
+		"@rollup/plugin-dsv": "^4.0.0",
 		"@sveltejs/adapter-static": "^3.0.10",
-		"@sveltejs/kit": "^2.53.4",
-		"@sveltejs/vite-plugin-svelte": "^6.2.4",
+		"@sveltejs/kit": "^2.62.0",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@vincjo/datatables": "^2.8.0",
-		"eslint": "^10.0.3",
+		"eslint": "^10.4.1",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.15.2",
-		"globals": "^17.4.0",
-		"prettier": "^3.8.1",
-		"prettier-plugin-svelte": "^3.5.1",
-		"svelte": "^5.55.9",
-		"vite": "^7.3.1"
+		"eslint-plugin-svelte": "^3.19.0",
+		"globals": "^17.6.0",
+		"prettier": "^3.8.3",
+		"prettier-plugin-svelte": "^4.1.0",
+		"svelte": "^5.56.1",
+		"vite": "^8.0.16"
 	},
 	"overrides": {
         "cookie": "^0.7.0"
@@ -35,6 +35,6 @@
 		"d3-array": "^3.2.4",
 		"d3-scale": "^4.0.2",
 		"layercake": "^10.0.2",
-		"svelte-highlight": "^7.9.0"
+		"svelte-highlight": "^7.10.0"
 	}
 }
