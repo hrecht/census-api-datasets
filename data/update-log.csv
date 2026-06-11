@@ -1,5 +1,6 @@
 "date","test_data","test_revert","change","endpoints_total","endpoints_added","urls_added","endpoints_removed","urls_removed"
-"2026-06-10 17:37",FALSE,FALSE,"No data changes",1788,0,"",0,""
+"2026-06-11 10:24",FALSE,FALSE,"Major data update",1789,1,"http://api.census.gov/data/2026/cps/basic/may",0,""
+"2026-06-10 17:37",FALSE,FALSE,"No data changes",1788,0,"",0,
 "2026-06-10 13:43",FALSE,FALSE,"No data changes",1788,0,"",0,
 "2026-06-10 09:57",FALSE,FALSE,"No data changes",1788,0,"",0,
 "2026-06-09 17:21",FALSE,FALSE,"No data changes",1788,0,"",0,
