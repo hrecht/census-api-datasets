@@ -16,17 +16,17 @@
 		"@eslint/js": "^10.0.1",
 		"@rollup/plugin-dsv": "^4.0.0",
 		"@sveltejs/adapter-static": "^3.0.10",
-		"@sveltejs/kit": "^2.62.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"@vincjo/datatables": "^2.8.0",
-		"eslint": "^10.4.1",
+		"@sveltejs/kit": "^2.70.1",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"@vincjo/datatables": "^2.8.1",
+		"eslint": "^10.7.0",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.19.0",
-		"globals": "^17.6.0",
-		"prettier": "^3.8.3",
-		"prettier-plugin-svelte": "^4.1.0",
-		"svelte": "^5.56.1",
-		"vite": "^8.0.16"
+		"eslint-plugin-svelte": "^3.22.0",
+		"globals": "^17.7.0",
+		"prettier": "^3.9.6",
+		"prettier-plugin-svelte": "^4.1.1",
+		"svelte": "^5.56.7",
+		"vite": "^8.1.5"
 	},
 	"overrides": {
         "cookie": "^0.7.0"
@@ -34,7 +34,7 @@
 	"dependencies": {
 		"d3-array": "^3.2.4",
 		"d3-scale": "^4.0.2",
-		"layercake": "^10.0.2",
-		"svelte-highlight": "^7.10.0"
+		"layercake": "^10.0.3",
+		"svelte-highlight": "^7.16.0"
 	}
 }
