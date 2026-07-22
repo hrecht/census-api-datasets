@@ -13,7 +13,7 @@ jobs:
       POST_BSKY: ${{ steps.rscript.outputs.POST_BSKY}}
       POST_TEXT: ${{ steps.rscript.outputs.POST_TEXT}}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
     
       # Install R and dependencies
       - uses: r-lib/actions/setup-r@v2
