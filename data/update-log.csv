@@ -1,5 +1,6 @@
 "date","test_data","test_revert","change","endpoints_total","endpoints_added","urls_added","endpoints_removed","urls_removed"
-"2026-08-03 16:45",FALSE,FALSE,"No data changes",1791,0,"",0,""
+"2026-08-04 08:27",FALSE,FALSE,"Major data update",1795,4,"http://api.census.gov/data/2026/pdb/tract, http://api.census.gov/data/2026/pdb/blockgroup, http://api.census.gov/data/2025/pdb/tract, http://api.census.gov/data/2025/pdb/blockgroup",0,""
+"2026-08-03 16:45",FALSE,FALSE,"No data changes",1791,0,"",0,
 "2026-08-03 12:57",FALSE,FALSE,"No data changes",1791,0,"",0,
 "2026-08-03 09:26",FALSE,FALSE,"No data changes",1791,0,"",0,
 "2026-08-02 16:30",FALSE,FALSE,"No data changes",1791,0,"",0,
