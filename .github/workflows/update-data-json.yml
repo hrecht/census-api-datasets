@@ -93,7 +93,7 @@ jobs:
             sleep 30
   
         - name: Send post
-          uses: myConsciousness/bluesky-post@v5
+          uses: myConsciousness/bluesky-post@v6
           with:
               text: ${{ needs.check_data.outputs.POST_TEXT }} ${{ env.POST_END }}
               link-preview-url: "https://www.hrecht.com/census-api-datasets/"
