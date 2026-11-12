@@ -30,9 +30,6 @@
 		"typescript": "^6.0.3",
 		"vite": "^8.3.8"
 	},
-	"overrides": {
-		"cookie": "^0.7.0"
-	},
 	"dependencies": {
 		"d3-array": "^3.2.5",
 		"d3-scale": "^4.0.3",
