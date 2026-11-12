@@ -17,6 +17,7 @@
 		"@rollup/plugin-dsv": "^4.0.0",
 		"@sveltejs/adapter-static": "^4.0.0",
 		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/load-config": "^0.2.2",
 		"@sveltejs/vite-plugin-svelte": "^7.3.1",
 		"@vincjo/datatables": "^2.8.1",
 		"eslint": "^10.14.0",
