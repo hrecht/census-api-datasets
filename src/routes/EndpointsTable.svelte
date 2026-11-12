@@ -21,7 +21,7 @@
 	{#snippet header()}
 		<input
 			type="text"
-            class="search"
+			class="search"
 			bind:value={search.value}
 			oninput={() => search.set()}
 			placeholder="Search..."
@@ -47,8 +47,11 @@
 			{#each table.rows as row}
 				<tr>
 					<td>{@html row.vintage}</td>
-					<td><a href={row.url.replace('http://', 'https://') + '.html'} target="_blank"
-						>{@html row.name}</a></td>
+					<td
+						><a href={row.url.replace('http://', 'https://') + '.html'} target="_blank"
+							>{@html row.name}</a
+						></td
+					>
 					<td>{@html row.type}</td>
 					<td>{@html row.title}</td>
 				</tr>
@@ -56,24 +59,24 @@
 		</tbody>
 	</table>
 	<div class="pagination-buttons">
-        <button onclick={() => table.setPage('previous')}>Previous</button>
+		<button onclick={() => table.setPage('previous')}>Previous</button>
 		{#each table.pagesWithEllipsis as page}
 			<button
 				type="button"
-                class={{ active: page === table.currentPage }}
+				class={{ active: page === table.currentPage }}
 				onclick={() => table.setPage(page)}
 			>
 				{page ?? '...'}
 			</button>
 		{/each}
-        <button onclick={() => table.setPage('next')}>Next</button>
+		<button onclick={() => table.setPage('next')}>Next</button>
 	</div>
 </Datatable>
 
 <style>
-    header {
-        margin-bottom: 2px;
-    }
+	header {
+		margin-bottom: 2px;
+	}
 	table {
 		text-align: left;
 		border-spacing: 0;
@@ -81,37 +84,38 @@
 		width: 100%;
 		margin-bottom: 1em;
 		margin-top: 1em;
-        overflow-x: hidden;
+		overflow-x: hidden;
 	}
 
 	td {
 		padding: 6x 10px !important!;
-        border-bottom: 1px solid #d5d5d5 !important;
-        border-right: none !important;
+		border-bottom: 1px solid #d5d5d5 !important;
+		border-right: none !important;
 	}
 
-	thead, th {
+	thead,
+	th {
 		font-size: var(--text-xxsmall) !important;
 		font-family: var(--font-mono) !important;
 		text-transform: uppercase !important;
 		font-weight: 400 !important;
 		padding-bottom: 0.5em !important;
-    }
+	}
 
-    .search {
-        padding: 6px;
-    }
-    .pagination-buttons > button {
-        padding: 4px 16px !important;
-        border: 1px solid #cccccc !important;
-        background-color: #efefef;
-        color: var(--color-darkgrey)
-    }
+	.search {
+		padding: 6px;
+	}
+	.pagination-buttons > button {
+		padding: 4px 16px !important;
+		border: 1px solid #cccccc !important;
+		background-color: #efefef;
+		color: var(--color-darkgrey);
+	}
 
-    .active {
-        background-color: var(--color-highlight) !important;
-        color: #ffffff !important;
-    }
+	.active {
+		background-color: var(--color-highlight) !important;
+		color: #ffffff !important;
+	}
 
 	.table-button {
 		background: none;
