@@ -8,10 +8,14 @@
 
 	data.sort((b, a) => a.change_date - b.change_date);
 
-	const changes = rollup(data, (D) => D.length, (d) => d.change);
+	const changes = rollup(
+		data,
+		(D) => D.length,
+		(d) => d.change
+	);
 
-	const changes_added = changes.get("Added");
-	const changes_removed = (changes.get("Removed") === undefined) ? 0:changes.get("Removed");
+	const changes_added = changes.get('Added');
+	const changes_removed = changes.get('Removed') === undefined ? 0 : changes.get('Removed');
 
 	function format_date(myDate) {
 		let formatted = new Intl.DateTimeFormat('en-US', {
@@ -29,11 +33,13 @@
 	//let { data } = $props();
 </script>
 
-<p>{changes_added} dataset endpoints have been added and {changes_removed} removed since July 2025.</p>
+<p>
+	{changes_added} dataset endpoints have been added and {changes_removed} removed since July 2025.
+</p>
 
 <div class="chart">
 	<h2 class="chart-title">
-		{#if (changes_removed === undefined | changes_removed === 0)}
+		{#if (changes_removed === undefined) | (changes_removed === 0)}
 			Recently added datasets
 		{:else}
 			Recently added and removed datasets
@@ -133,9 +139,7 @@
 		</div>
 	{/if}
 
-	<p class="chart-note">
-		Note: Dataset titles and descriptions were written by the Census Bureau.
-	</p>
+	<p class="chart-note">Note: Dataset titles and descriptions were written by the Census Bureau.</p>
 </div>
 
 <style>
