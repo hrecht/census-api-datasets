@@ -38,5 +38,9 @@
 		"d3-scale": "^4.0.3",
 		"layercake": "^10.0.3",
 		"svelte-highlight": "^7.23.1"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
 	}
 }
