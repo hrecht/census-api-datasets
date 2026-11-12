@@ -4,6 +4,11 @@ import { defineConfig } from 'vite';
 import dsv from '@rollup/plugin-dsv';
 
 export default defineConfig({
+	server: {
+    cors: {
+      'origin': '*',
+    },
+  },
 	plugins: [
 		sveltekit({
 			paths: {
