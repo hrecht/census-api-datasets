@@ -19,11 +19,11 @@
 		"@sveltejs/kit": "^2.70.3",
 		"@sveltejs/vite-plugin-svelte": "^7.3.0",
 		"@vincjo/datatables": "^2.8.1",
-		"eslint": "^10.10.0",
+		"eslint": "^10.14.0",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.23.0",
-		"globals": "^17.12.0",
-		"prettier": "^3.9.6",
+		"eslint-plugin-svelte": "^3.24.1",
+		"globals": "^17.14.0",
+		"prettier": "^3.10.1",
 		"prettier-plugin-svelte": "^4.1.1",
 		"svelte": "^5.57.0",
 		"vite": "^8.2.2"
@@ -32,9 +32,9 @@
         "cookie": "^0.7.0"
     },
 	"dependencies": {
-		"d3-array": "^3.2.4",
-		"d3-scale": "^4.0.2",
+		"d3-array": "^3.2.5",
+		"d3-scale": "^4.0.3",
 		"layercake": "^10.0.3",
-		"svelte-highlight": "^7.20.0"
+		"svelte-highlight": "^7.23.1"
 	}
 }
