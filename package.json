@@ -35,6 +35,6 @@
 		"d3-array": "^3.2.5",
 		"d3-scale": "^4.0.3",
 		"layercake": "^10.0.3",
-		"svelte-highlight": "^7.20.0"
+		"svelte-highlight": "^7.23.1"
 	}
 }
