@@ -5,10 +5,10 @@ import dsv from '@rollup/plugin-dsv';
 
 export default defineConfig({
 	server: {
-    cors: {
-      'origin': '*',
-    },
-  },
+		cors: {
+			origin: '*'
+		}
+	},
 	plugins: [
 		sveltekit({
 			paths: {
