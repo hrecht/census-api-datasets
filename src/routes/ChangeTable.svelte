@@ -90,7 +90,7 @@
 					<td class={d.change + ' change info'}>{d.change} {format_date(d.change_date)}</td>
 					<td class="endpoint info"
 						><a href={d.url.replace('http://', 'https://') + '.html'} target="_blank"
-							>{d.url.replace('http://api.census.gov/data/', '')}</a
+							>{d.url.replace('http://api.census.gov/data/', '').replace('https://api.census.gov/data/', '')}</a
 						></td
 					>
 					<td class="type info">{d.type}</td>
