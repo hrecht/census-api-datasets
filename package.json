@@ -20,7 +20,7 @@
 		"@sveltejs/load-config": "^0.2.3",
 		"@sveltejs/vite-plugin-svelte": "^7.3.1",
 		"@vincjo/datatables": "^2.8.1",
-		"eslint": "^10.14.0",
+		"eslint": "^10.15.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.24.1",
 		"globals": "^17.14.0",
