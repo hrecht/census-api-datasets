@@ -16,17 +16,17 @@
 		"@eslint/js": "^10.0.1",
 		"@rollup/plugin-dsv": "^4.0.0",
 		"@sveltejs/adapter-static": "^4.0.1",
-		"@sveltejs/kit": "^3.2.0",
+		"@sveltejs/kit": "^3.4.0",
 		"@sveltejs/load-config": "^0.2.3",
 		"@sveltejs/vite-plugin-svelte": "^7.3.1",
 		"@vincjo/datatables": "^2.8.1",
-		"eslint": "^10.14.0",
+		"eslint": "^10.15.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.24.1",
 		"globals": "^17.14.0",
 		"prettier": "^3.10.1",
-		"prettier-plugin-svelte": "^4.1.1",
-		"svelte": "^5.57.3",
+		"prettier-plugin-svelte": "^4.2.0",
+		"svelte": "^5.59.1",
 		"typescript": "^6.0.3",
 		"vite": "^8.3.8"
 	},
@@ -34,7 +34,7 @@
 		"d3-array": "^3.2.5",
 		"d3-scale": "^4.0.3",
 		"layercake": "^10.0.3",
-		"svelte-highlight": "^7.23.1"
+		"svelte-highlight": "^7.23.2"
 	},
 	"imports": {
 		"#lib": "./src/lib/index.js",
